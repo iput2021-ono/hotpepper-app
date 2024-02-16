@@ -9,9 +9,9 @@ export default function Home() {
   const [longitude, setLongitude] = useState<number | null>(null);
   const [radius, setRadius] = useState<number>(3);
 
-  useEffect(() => {
-    getCurrentLocation();
-  }, []);
+  // useEffect(() => {
+  //   getCurrentLocation();
+  // }, []);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -30,7 +30,8 @@ export default function Home() {
       query: {
         latitude: latitude,
         longitude: longitude,
-        range: radius
+        range: radius,
+        page: 1
       }
     });
   }
