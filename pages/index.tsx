@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from 'react';
+import Header from "./components/header.tsx";
 
 export default function Home() {
   const router = useRouter();
@@ -44,6 +45,7 @@ export default function Home() {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
+    <Header/>
     <main className="flex flex-col items-center justify-center flex-grow">
       <div className="flex flex-col items-center rounded-lg bg-white/[0.9] px-5 lg:px-20 py-10">
         <h1 className="text-6xl font-bold mb-4 text-black">Near GOHAN</h1>

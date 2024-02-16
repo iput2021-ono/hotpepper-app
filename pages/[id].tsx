@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router'; // useRouterをインポート
+import Header from "./components/header.tsx";
 
 interface Shop {
   id: string;
@@ -12,7 +12,6 @@ interface Shop {
       m: string;
     };
   };
-  // 他のプロパティ...
 };
 
 interface DetailProps {
@@ -22,21 +21,24 @@ interface DetailProps {
 const DetailPage = ({ shop }: DetailProps) => {
 
   return (
-    <main>
-      <React.Fragment>
-        <h1>{shop.name}</h1>
-        <Image
-          src={shop.photo.pc.m}
-          alt={shop.name}
-          width={500} // 画像の幅を適切に設定
-          height={500} // 画像の高さを適切に設定
-        />
-        <div>{shop.catchCopy}</div>
-        <div>{shop.address}</div>
-        <div>営業時間：{shop.open}</div>
-        // Other details...
-      </React.Fragment>
-    </main>
+    <div>
+      <Header/>
+      <main>
+        <React.Fragment>
+          <h1>{shop.name}</h1>
+          <Image
+            src={shop.photo.pc.m}
+            alt={shop.name}
+            width={500} // 画像の幅を適切に設定
+            height={500} // 画像の高さを適切に設定
+          />
+          <div>{shop.catchCopy}</div>
+          <div>{shop.address}</div>
+          <div>営業時間：{shop.open}</div>
+          // Other details...
+        </React.Fragment>
+      </main>
+    </div>
   );
 }
 

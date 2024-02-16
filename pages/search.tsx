@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from 'next/link'; 
 import Paginate from 'react-paginate';
+import Header from "./components/header.tsx";
 
 interface Urls {
   pc: string;
@@ -68,16 +69,17 @@ const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <Header/>
         <main className="flex flex-col flex-grow bg-white text-black">
-          <div className="max-w-[1000px] mt-[80px] mb-[100px] mx-8">
+          <div className="max-w-[1000px] mt-[80px] mb-[100px] mx-8 lg:mx-auto">
             <p>{results.results_available}件 ( {currentPage} / {pageCount}ページ )</p>
             <ul>
                 {results.shop.map((data) => {
                     return (
-                      <div className='rounded-xl card card-side bg-base-100 shadow-xl p-8 border bg-amber-50 border-green-600 mt-2 mb-6'>
+                      <div className='rounded-xl bg-base-100 shadow-xl p-8 border bg-amber-50 border-green-600 mt-2 mb-6'>
                         <div className=''>
                           <li key={data.id} className="flex">
-                            <div className="card card-side min-w-fit min-h-fit max-w-fit max-h-fit">
+                            <div className="min-w-fit min-h-fit max-w-fit max-h-fit">
                               <Image
                                 src={data.photo.pc.m}
                                 alt={data.name}
@@ -86,7 +88,7 @@ const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
                                 className="object-cover"
                               />
                             </div>
-                            <div className="card-body flex-grow p-2">
+                            <div className="flex-grow p-2">
                               <div>{data.catch}</div>
                               <h3 className="text-xl">
                                 <Link href={`/${data.id}`}>
