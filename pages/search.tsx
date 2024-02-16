@@ -109,11 +109,10 @@ const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
                     marginPagesDisplayed={1}
                     pageRangeDisplayed={1}
                     onPageChange={handlePageClick}
-                    containerClassName={"btn"}
-                    previousLinkClassName={"btn"}
-                    nextLinkClassName={"btn"}
-                    disabledClassName={"btn"}
-                    activeClassName={"btn"}
+                    containerClassName={"pagination"}
+                    previousLinkClassName={"pagination__previous"}
+                    nextLinkClassName={"pagination__next"}
+                    disabledClassName={"pagination__disabled"}
                   />
                 </div>
             </ul>
