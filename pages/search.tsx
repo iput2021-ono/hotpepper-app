@@ -23,6 +23,7 @@ interface Shop {
   catch: string;
   address: string;
   open: string;
+  access: string;
 }
 
 interface Results {
@@ -32,63 +33,70 @@ interface Results {
 
 interface HomeProps {
   results: Results;
+  lat: number;
+  lng: number;
+  range: number;
 }
 
-const SearchPage = ({ results, lat, lng, range  }: HomeProps) => {
-  const [currentPage, setCurrentPage] = useState(0);
+const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
   const itemsPerPage = 10;
   const data = results.shop;
 
   const handlePageClick = ({ selected: selectedPage }: { selected: number }) => {
+    setCurrentPage(selectedPage + 1 );
     router.push({
       pathname: '/search',
       query: { 
         latitude: lat,
         longitude: lng,
         range: range,
-        page: selectedPage + 1 }, // ページ番号は1から始まるため、selectedPageに1を加えます
+        page: selectedPage + 1 }, 
     });
   };
-
-  // 現在のページのデータ
-  const offset = currentPage * itemsPerPage;
 
   // ページネーションコントロール
   const pageCount = Math.ceil(results.results_available / itemsPerPage);
 
     return (
-        <main>
-            <h1>Near GOHAN</h1>
-            <p>{results.results_available}</p>
+      <div>
+        <main className="flex flex-col flex-grow bg-white text-black">
+          <div className="max-w-[1000px] mt-[80px] mb-[100px] mx-auto">
+            <p>{results.results_available}件 ( {currentPage} / {pageCount}ページ )</p>
             <ul>
                 {results.shop.map((data) => {
                     return (
-                    <li key={data.id}>
-                        <Link href={`/${data.id}`}> {/* 各店舗の詳細ページへのリンクを設定 */}
-                            <a>
-                            <Image
+                      <div className='rounded-xl card card-side bg-base-100 shadow-xl p-8 border bg-amber-50 border-green-600 my-4'>
+                        <div className=''>
+                          <li key={data.id} className="flex">
+                            <div className="card card-side min-w-fit min-h-fit max-w-fit max-h-fit">
+                              <Image
                                 src={data.photo.pc.m}
                                 alt={data.name}
                                 width={168}
                                 height={168}
-                            />
-                            </a>
-                        </Link>
-                        <div>{data.catch}</div>
-                        <h3>
-                        <Link href={`/${data.id}`}> {/* 各店舗の詳細ページへのリンクを設定 */}
-                            <a>{data.name}</a>
-                        </Link>
-                        </h3>
-                        <div>{data.address}</div>
-                        <div>営業時間：{data.open}</div>
-                    </li>
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="card-body flex-grow p-2">
+                              <div>{data.catch}</div>
+                              <h3 className="text-xl">
+                                <Link href={`/${data.id}`}>
+                                  {data.name}
+                                </Link>
+                              </h3>
+                              <div>営業時間：{data.open}</div>
+                              <div>アクセス：{data.access}</div>
+                            </div>
+                          </li>
+                        </div>
+                      </div>
                     );
                 })}
                 <Paginate
-                  previousLabel={"前"}
-                  nextLabel={"次"}
+                  previousLabel={"<"}
+                  nextLabel={">"}
                   pageCount={pageCount}
                   onPageChange={handlePageClick}
                   containerClassName={"pagination"}
@@ -98,7 +106,13 @@ const SearchPage = ({ results, lat, lng, range  }: HomeProps) => {
                   activeClassName={"pagination__link--active"}
                 />
             </ul>
-      </main>
+          </div>
+            
+        </main>
+        <footer className="text-white footer p-4 bg-green-700 text-base-content text-center">
+          Powered by <a className="text-blue-200" href="http://webservice.recruit.co.jp/">ホットペッパーグルメ Webサービス</a>
+        </footer>
+      </div>  
     );
 }
 
