@@ -34,17 +34,20 @@ interface HomeProps {
   results: Results;
 }
 
-const SearchPage = ({ results }: HomeProps) => {
+const SearchPage = ({ results, lat, lng, range  }: HomeProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const router = useRouter();
   const itemsPerPage = 10;
   const data = results.shop;
 
   const handlePageClick = ({ selected: selectedPage }: { selected: number }) => {
-    // ページ番号をクエリパラメータとして追加
     router.push({
       pathname: '/search',
-      query: { page: selectedPage + 1 }, // ページ番号は1から始まるため、selectedPageに1を加えます
+      query: { 
+        latitude: lat,
+        longitude: lng,
+        range: range,
+        page: selectedPage + 1 }, // ページ番号は1から始まるため、selectedPageに1を加えます
     });
   };
 
@@ -121,5 +124,5 @@ export async function getServerSideProps(context: any) {
   const json = await res.json();
   const { results } = json;
 
-  return { props: { results } };
+  return { props: { results, lat, lng, range } };
 }
