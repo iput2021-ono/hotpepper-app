@@ -30,7 +30,8 @@ export default function Home() {
       query: {
         latitude: latitude,
         longitude: longitude,
-        range: radius
+        range: radius,
+        page: 1
       }
     });
   }
