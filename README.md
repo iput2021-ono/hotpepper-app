@@ -1,40 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### アプリ名
+Near GOHAN
 
-## Getting Started
+### 公開したウェブアプリの URL
+https://hotpepper-app.vercel.app/
 
-First, run the development server:
+### 該当プロジェクトのリポジトリ URL
+https://github.com/iput2021-ono/hotpepper-app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 対象OSおよびブラウザ(ver.含む)
+※動作確認済みのもののみ記載  
+windows 11  
+android 13
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Google Chrome (121.0.6167.185)  
+Firefox (122.0.1 )  
+Microsoft Edge (121.0.2277.112)  
+Opera (80.3.4244.77596)  
+ 
+## 開発環境
+### 開発環境
+Visual Studio Code 1.86.2
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 開発言語
+TypeScript 5.2.2  
+Node.js 18.17.1  
+TailWindCSS 3.3.0  
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### フレームワーク
+Next.js 14.1.0  
+React 18.2.0  
+React-Pagenate 8.2.0
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 開発期間
+3日間
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## アプリケーション機能
 
-## Learn More
+### 機能一覧
+- レストラン検索  
+  -ホットペッパーグルメサーチAPIを使用して、現在地周辺の飲食店を検索する。  
+  -選択したジャンル（初期値=""）と予算（初期値=""）を検索条件に追加する。
+- レストラン情報取得：ホットペッパーグルメサーチAPIを使用して、飲食店の詳細情報を取得する。
 
-To learn more about Next.js, take a look at the following resources:
+### 画面一覧
+- 検索画面 ：条件を指定してレストランを検索する。
+- 一覧画面 ：検索結果の飲食店を一覧表示する。
+- 詳細画面 ：一覧画面で選択した項目の詳細を表示する。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### コンセプト
+近くのお店をサクッと検索
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### こだわったポイント
+現在地からの半径に加えて、ジャンルと予算でも検索可能にした点。  
+レスポンシブ設定を行い、パソコン以外でも違和感なく使用できるようにした点。
 
-## Deploy on Vercel
+### デザイン面でこだわったポイント
+食欲増進色である赤や緑を主に使用した点。
+一覧画面に表示される要素をわかりやすく配置した点。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### アドバイスして欲しいポイント
+検索画面のページング部分にスタイルを適応する方法が調べても理解できませんでした。  
+Next.jsのAppRouterでの作成を途中で断念したため、AppRouterでのアプリ開発について詳しく知りたいです。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 自己評価
+周りに助言などを貰わずに行った初めての個人開発だったが、無事最低要件を満たして追加オプションも実装することができた。  
+個人的にはかなり満足のいくアプリになった。
