@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import Image from 'next/image';
 import Link from 'next/link'; 
 import Paginate from 'react-paginate';
-import Header from "./components/header.tsx";
-import Footer from "./components/footer.tsx";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 interface Shop {
   id: string;
