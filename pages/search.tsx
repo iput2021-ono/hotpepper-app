@@ -86,7 +86,7 @@ const SearchPage = ({ results, lat, lng, range, genre, budget }: HomeProps) => {
             <ul>
                 {results.shop.map((data) => {
                     return (
-                      <div className='rounded-xl shadow-xl p-4 lg:p-8 border bg-amber-50 border-green-600 mt-2 mb-6'>
+                      <div key={data.id} className='rounded-xl shadow-xl p-4 lg:p-8 border bg-amber-50 border-green-600 mt-2 mb-6'>
                         <div className=''>
                           <li key={data.id} className="flex flex-col items-center justify-center md:flex-row md:items-start">
                             <div className="w-full flex justify-center md:w-auto md:min-w-fit md:min-h-fit md:max-w-fit md:max-h-fit">
