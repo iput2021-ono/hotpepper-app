@@ -35,7 +35,7 @@ interface Photo {
 }
 
 interface DetailProps {
-    shop: Shop[];
+    shop: Shop;
 }
 
 const DetailPage = ({ shop }: DetailProps) => {
