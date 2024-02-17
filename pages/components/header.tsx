@@ -11,7 +11,9 @@ export default function Header() {
     }
     return (
         <div className="sticky top-0 border p-4 bg-white text-black">
-            <button className="text-xl" onClick={handleTop}>Near GOHAN</button>
+            <button className="text-xl" onClick={handleTop}>
+                <span className="text-red-500 text-2xl italic">N</span>ear GOHAN
+            </button>
         </div>
     );
     
