@@ -29,17 +29,21 @@ export default function Home() {
   };
 
   const handleSearch = () => {
-    router.push({
-      pathname: '/search',
-      query: {
-        latitude: latitude,
-        longitude: longitude,
-        range: radius,
-        page: 1,
-        budget: budget,
-        genre: genre
-      }
-    });
+    if (latitude === null || longitude === null) {
+      alert('現在地が取得されていません。');
+    } else {
+      router.push({
+        pathname: '/search',
+        query: {
+          latitude: latitude,
+          longitude: longitude,
+          range: radius,
+          page: 1,
+          budget: budget,
+          genre: genre
+        }
+      });
+    }
   }
 
   return (
