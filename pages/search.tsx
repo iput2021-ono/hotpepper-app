@@ -144,10 +144,10 @@ export async function getServerSideProps(context: any) {
   const apiKey = process.env.API_KEY;
   const page = context.query.page;
   const baseUrl = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/";
-  // const lat = context.query.latitude;
-  // const lng = context.query.longitude;
-  const lat = "35.6905";
-  const lng = "139.6995";
+  const lat = context.query.latitude;
+  const lng = context.query.longitude;
+  // const lat = "35.6905";
+  // const lng = "139.6995";
   const range = context.query.range;
   const start = (page * 10) - 9;
   const genre = context.query.genre || "";
