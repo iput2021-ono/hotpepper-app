@@ -30,6 +30,7 @@ interface Urls {
 interface Photo {
   pc: {
     m: string;
+    l: string;
   };
 }
 
@@ -48,26 +49,26 @@ const DetailPage = ({ shop }: DetailProps) => {
           <link rel="icon" href="/Near.png" />
         </Head>
       <Header/>
-      <main className="flex flex-col items-center justify-center max-w-[1000px] mt-[80px] mb-[100px] mx-10 lg:mx-auto p-10 border bg-gradient-to-b from-red-100 to-red-50">
+      <main className="flex flex-col md:items-center md:justify-center max-w-[1000px] mt-[40px] mb-[40px] mx-10 lg:mx-auto p-10 border bg-gradient-to-b from-red-100 to-red-50">
         <React.Fragment>
             <Image
-              src={shop.photo.pc.m}
+              src={shop.photo.pc.l}
               alt={shop.name}
               width={300}
               height={300}
             />
-            <div className='flex flex-col items-center justify-center mt-16 mb-8'>
-              <p> {shop.catch}</p>
-              <h1 className='text-4xl font-bold'>
-                <Link href={`${shop.urls.pc}`}>
+            <div className='flex flex-col mt-8 mb-8'>
+              <p className='flex md:items-center md:justify-center text-xs text-red-600 md:text-xl'> {shop.catch}</p>
+              <h1 className='text-2xl md:text-4xl font-bold'>
+                <Link className='hover:underline' href={`${shop.urls.pc}`}>
                   {shop.name}
                 </Link>
               </h1>
             </div>
-          <div>予算：{shop.budget.name}</div>
-          <div>アクセス：{shop.access}</div>
-          <div>住所：{shop.address}</div>
-          <div>営業時間：{shop.open}</div>
+          <div><span className='font-bold'>予算</span> : {shop.budget.name}</div>
+          <div><span className='font-bold'>アクセス</span> : {shop.access}</div>
+          <div><span className='font-bold'>住所</span> : {shop.address}</div>
+          <div><span className='font-bold'>営業時間</span> : {shop.open}</div>
         </React.Fragment>
       </main>
       <Footer/>

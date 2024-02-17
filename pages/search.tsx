@@ -44,9 +44,11 @@ interface HomeProps {
   lat: number;
   lng: number;
   range: number;
+  genre: string;
+  budget: string;
 }
 
-const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
+const SearchPage = ({ results, lat, lng, range, genre, budget }: HomeProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
   const itemsPerPage = 10;
@@ -60,7 +62,9 @@ const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
         latitude: lat,
         longitude: lng,
         range: range,
-        page: selectedPage + 1 }, 
+        page: selectedPage + 1,
+        genre: genre,
+        budget: budget}, 
     });
   };
 
@@ -82,28 +86,28 @@ const SearchPage = ({ results, lat, lng, range }: HomeProps) => {
             <ul>
                 {results.shop.map((data) => {
                     return (
-                      <div className='rounded-xl bg-base-100 shadow-xl p-8 border bg-amber-50 border-green-600 mt-2 mb-6'>
+                      <div className='rounded-xl shadow-xl p-4 lg:p-8 border bg-amber-50 border-green-600 mt-2 mb-6'>
                         <div className=''>
-                          <li key={data.id} className="flex">
-                            <div className="min-w-fit min-h-fit max-w-fit max-h-fit">
+                          <li key={data.id} className="flex flex-col items-center justify-center md:flex-row md:items-start">
+                            <div className="w-full flex justify-center md:w-auto md:min-w-fit md:min-h-fit md:max-w-fit md:max-h-fit">
                               <Image
                                 src={data.photo.pc.m}
                                 alt={data.name}
                                 width={168}
                                 height={168}
-                                className="object-cover"
+                                className="object-cover "
                               />
                             </div>
                             <div className="flex-grow p-2">
-                              <div>{data.catch}</div>
-                              <h3 className="text-xl">
-                                <Link href={`/${data.id}`}>
+                              <div className='text-xs text-red-500 md:text-bace'>{data.catch}</div>
+                              <h3 className="text-xl font-bold mb-4 md:mb-0">
+                                <Link className='hover:underline' href={`/${data.id}`}>
                                   {data.name}
                                 </Link>
                               </h3>
-                              <div>予算：{data.budget.name}</div>
-                              <div>営業時間：{data.open}</div>
-                              <div>アクセス：{data.access}</div>
+                              <div className='text-sm md:text-bace'>予算：{data.budget.name}</div>
+                              <div className='text-sm md:text-bace'>営業時間：{data.open}</div>
+                              <div className='text-sm md:text-bace'>アクセス：{data.access}</div>
                             </div>
                           </li>
                         </div>
@@ -146,14 +150,16 @@ export async function getServerSideProps(context: any) {
   const lng = "139.6995";
   const range = context.query.range;
   const start = (page * 10) - 9;
+  const genre = context.query.genre || "";
+  const budget = context.query.budget || "";
   const format = "json";
 
   // 外部APIからデータをFetchします。
   const res = await fetch(
-    `${baseUrl}?key=${apiKey}&lat=${lat}&lng=${lng}&range=${range}&start=${start}&format=${format}`
+    `${baseUrl}?key=${apiKey}&lat=${lat}&lng=${lng}&range=${range}&start=${start}&budget=${budget}&genre=${genre}&format=${format}`
   );
   const json = await res.json();
   const { results } = json;
 
-  return { props: { results, lat, lng, range } };
+  return { props: { results, lat, lng, range, genre, budget } };
 }
