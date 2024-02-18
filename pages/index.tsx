@@ -13,9 +13,9 @@ export default function Home() {
   const [budget, setBudget] = useState<string | null>(null);
   const [genre, setGenre] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   getCurrentLocation();
-  // }, []);
+  useEffect(() => {
+    getCurrentLocation();
+  }, []);
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
