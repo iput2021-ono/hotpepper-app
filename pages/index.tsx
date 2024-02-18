@@ -61,7 +61,9 @@ export default function Home() {
         <h1 className="text-4xl lg:text-6xl font-bold mb-4 text-black"><span className="text-red-500 text-6xl lg:text-8xl italic">N</span>ear GOHAN</h1>
         <p className="text-[18px] lg:text-[24px] mb-4 text-black">近くのお店をサクッと検索</p>
         <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-          {/* <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={getCurrentLocation}>現在地取得</button> */}
+        {(latitude === null || longitude === null) && (
+          <button className="px-4 py-2 bg-red-500 text-white rounded shadow" onClick={getCurrentLocation}>現在地取得</button>
+        )}
           <select className="select text-black max-w-xs px-4 py-2 rounded shadow" value={budget ?? ''} onChange={(e) => setBudget(e.target.value)}>
             <option value="">全ての予算</option>
             <option value="B009">~500円</option>
