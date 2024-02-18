@@ -11,11 +11,13 @@ https://github.com/iput2021-ono/hotpepper-app
 ※動作確認済みのもののみ記載  
 windows 11  
 android 13
+iOS 16.7
 
 Google Chrome (121.0.6167.185)  
 Firefox (122.0.1 )  
 Microsoft Edge (121.0.2277.112)  
 Opera (80.3.4244.77596)  
+Safari (16.6)
  
 ## 開発環境
 ### 開発環境
