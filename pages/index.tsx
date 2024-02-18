@@ -19,10 +19,17 @@ export default function Home() {
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (error) => {
+          if (error.code === error.PERMISSION_DENIED) {
+            alert('位置情報の提供が拒否されました。設定を確認してください。');
+          }
+        }
+      );
     } else {
       alert('Geolocation is not supported by this browser.');
     }
